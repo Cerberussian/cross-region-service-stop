@@ -81,11 +81,11 @@ def lambda_handler(event, context):
 
 		logging.info('Going through region ' + region)
 
-		#EC2
-		stop_ec2_instances(region)
-		
 		#ASG
 		set_asg_to_zero(region)
+		
+		#EC2
+		stop_ec2_instances(region)
 		
 		#RDS
 		terminate_rds_instances(region)
