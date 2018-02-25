@@ -61,11 +61,14 @@ def terminate_rds_instances(region):
 	if response['DBInstances']:
 		for db in response['DBInstances']:
 			logging.info('Terminating ' + db['DBInstanceIdentifier'])
-			client.delete_db_instance(
-			DBInstanceIdentifier=db['DBInstanceIdentifier'],
-			SkipFinalSnapshot=False,
-			FinalDBSnapshotIdentifier=db['DBInstanceIdentifier'] + '-' + str(int(time()))
-			)	
+			try:
+				client.delete_db_instance(
+				DBInstanceIdentifier=db['DBInstanceIdentifier'],
+				SkipFinalSnapshot=False,
+				FinalDBSnapshotIdentifier=db['DBInstanceIdentifier'] + '-' + str(int(time()))
+				)
+			except:
+				logging.info('There was a problem deleting RDS instance (check boto3 delete_db_instance documentation for possible reasons)')
 	else:
 		logging.info('No RDS instances in ' + region)
 
