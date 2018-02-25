@@ -1,4 +1,4 @@
-# ec2-cross-region-instance-stop
+# cross-region-service-stop
 
 You should put this lambda just in one region
 
@@ -20,3 +20,5 @@ Deletion could fail due to different reasons described in official documentation
 * Restructured lambda and now its more decoupled. This also allows you now to easily disable services you dont want to terminate / stop by commenting out relevant function call in main
 
 * Added permissions needed for lambda to run. Lambda got extensive list permissions but limited write permissions
+
+* Changed name of repo from ec2-cross-region-instance-stop to cross-region-service-stop
